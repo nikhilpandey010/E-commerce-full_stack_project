@@ -55,6 +55,7 @@ def addOrderItems(request):
                 name= product.name,
                 qty=i['qty'],
                 price=product.price,
+                image=product.image
 
             )
             # update stock

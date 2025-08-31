@@ -64,6 +64,7 @@ const orderSlice = createSlice({
         //     state.error = action.payload;
         // },
 
+
         payOrderStart(state)
         {
             
@@ -158,19 +159,20 @@ export const {
     listMyOrderSuccess,deliverOrderFailure,deliverOrderStart,deliverOrderSuccess
 } = orderSlice.actions;
 
-// export const createMainOrder =(order)  => async(dispatch)=>{
-//     try {
-//         dispatch(createOrderStart());
-//         const createOrder = await orderAPI.createOrder(order);
-//         console.log("createOrder",createOrder);
-//         dispatch(createOrderSuccess(createOrder));
-//         localStorage.removeItem("cartItems");
-//         console.log(createOrder);
-//     } catch (error) {
-//         dispatch(createOrderFailure(error.message));
+
+
+export const createSingleOrder =(order)  => async(dispatch)=>{
+    try {
+        dispatch(createOrderStart());
+        const createOrder = await orderAPI.createOrder(order);
+        console.log("createOrder",createOrder);
+        dispatch(createOrderSuccess(createOrder));
         
-//     }
-// }
+    } catch (error) {
+        dispatch(createOrderFailure(error.message));
+        
+    }
+}
 
 export const getOrderDetails =(orderId)  => async(dispatch)=>{
     try {

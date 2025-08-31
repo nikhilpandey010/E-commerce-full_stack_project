@@ -34,7 +34,7 @@ function ProductCarousel() {
         <Carousel pause="hover" className="bg-dark">
             <Carousel.Item >
               <Link to={'/'}>
-                <img
+                <img style={{height: '500px',width: '100%'}}
                   src={Image1}
                 />
                 <Carousel.Caption className="carousel-caption">
@@ -45,7 +45,7 @@ function ProductCarousel() {
 
              <Carousel.Item >
               <Link to={'/'}>
-                <img
+                <img style={{height: '500px',width: '100%'}}
                   src={Image2}
                 />
                 <Carousel.Caption className="carousel-caption">
@@ -56,7 +56,7 @@ function ProductCarousel() {
           
            <Carousel.Item >
               <Link to={'/'}>
-                <img
+                <img style={{height: '500px',width: '100%'}}
                   src={Image3}
                 />
                 <Carousel.Caption className="carousel-caption">

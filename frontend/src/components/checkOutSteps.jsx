@@ -41,15 +41,20 @@ import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';  // for navigation
+import { useSelector } from 'react-redux';
 
-export default function CheckOutSteps({ step1, step2, step3, step4 }) {
+
+
+export default function CheckOutSteps({ step1, step2, step3 ,step4}) {
+const userLogin = useSelector((state) => state.user);
+const { userDetails } = userLogin;
   return (
     <div role="presentation">
       <Breadcrumbs aria-label="breadcrumb">
 
-        {step1 ? (
+        {step1  ? (
           <Link component={RouterLink} to="/login" underline="hover" color="inherit">
-            Sign In
+            Shipping
           </Link>
         ) : (
           <Typography color="text.disabled">Sign In</Typography>
@@ -79,11 +84,8 @@ export default function CheckOutSteps({ step1, step2, step3, step4 }) {
           <Typography color="text.disabled">Payment</Typography>
         )}
 
-        
-
       </Breadcrumbs>
     </div>
   );
 }
-
 

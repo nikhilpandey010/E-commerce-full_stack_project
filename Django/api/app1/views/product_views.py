@@ -60,7 +60,7 @@ def getTopProduct(request):
 def getProduct(request,pk):
     product = Product.objects.get(_id = pk)
     print("product",product)
-    serializer = ProductSerialisers(product , many=False)
+    serializer = ProductSerialisers(product , many=False,context={'request': request})
     print("serializer",serializer.data)
     return Response(serializer.data)
 

@@ -13,7 +13,7 @@ from django.db import IntegrityError
 # restframework jwt
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-
+from rest_framework_simplejwt.views import TokenRefreshView
 # local imports 
 from app1.models import *
 from app1.serializers import UserSerializers, UserSerializersWithToken

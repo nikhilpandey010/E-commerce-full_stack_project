@@ -102,21 +102,38 @@ const userSlice = createSlice({
         //     state.loading=false;
         //     state.error = action.payload;
         // },
-        // logoutSucess(state)
-        // {
-        //     state.userDetails={};
-        //     state.loading= false;
-        //     state.error=null;
-        //     localStorage.removeItem("userInfo");
-        // }
+        logoutSucess(state)
+        {
+            state.userDetails={};
+            state.loading= false;
+            state.error=null;
+            localStorage.removeItem("userInfo");
+        },
 
+        sucessRefreshToken(state,action)
+        {
+            console.log(action.payload,"action.payload")
+            const userDetails = JSON.parse(localStorage.getItem("userInfo"));
+            userDetails.token = action.payload;
+            state.userDetails = userDetails;
+            console.log("Updated userDetails:", userDetails);
+            localStorage.setItem("userInfo", JSON.stringify(userDetails));
+
+        },
+
+        refreshTokenFailure(state, action) 
+        {
+            state.loading = false; 
+            state.error = action.payload;
+
+        },
     }
 })
 
 export const {
     loginStart, loginSucess,loginFailure ,getUserDetailsSucess,getUserDetailsStart,getUserDetailsFailure,
     createUserFailure,createUserStart,createUserSucess,
-    updateUserFailure,updateUserStart,updateUserSucess,deleteUserStart,deleteUserFailure,deleteUserSucess,logoutSucess
+    updateUserFailure,updateUserStart,updateUserSucess,deleteUserStart,deleteUserFailure,deleteUserSucess,logoutSucess,sucessRefreshToken,refreshTokenFailure
 } =userSlice.actions;
 
 export const login = (email,password) => async (dispatch) =>{
@@ -184,9 +201,23 @@ export const deleteUser =(userId) => async (dispatch)=>{
 
 export const logout =() => async (dispatch)=>{
     
+    dispatch(logoutSucess());
+    
+}
+
+
+export const getRefreshToken =(refreshToken)=> async( dispatch) => {
+    try{
+        console.log(refreshToken,"refreshToken");
+        const access_token= await userAPI.fetchRefreshToken(refreshToken);
+        console.log(access_token,"access_token");
+        dispatch(sucessRefreshToken(access_token));
+    } catch(error){
         dispatch(logoutSucess());
-       
-        
+    }
+      
+     
+      
     
 }
 

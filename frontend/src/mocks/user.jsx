@@ -84,6 +84,19 @@ class UserAPI{
             : error.message;
         }
     }
+
+     async  fetchRefreshToken(refresh)
+    {
+        try{
+            console.log(refresh,"refreshToken");
+        const {data} = await axios.post('http://127.0.0.1:8000/app1/users/refresh/', {refresh: refresh});
+            console.log(data,"access");
+            return  data.access;
+        } catch (error){
+              throw error.response && error.response.data.details ? error.response.data.details 
+            : error.message;
+        }
+    }
     
 }
 
