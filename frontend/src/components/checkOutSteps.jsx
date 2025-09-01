@@ -1,38 +1,4 @@
 
-// import * as React from 'react';
-// import Typography from '@mui/material/Typography';
-// import Breadcrumbs from '@mui/material/Breadcrumbs';
-// import Link from '@mui/material/Link';
-// import { Link } from 'react-router-dom';
-
-// function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-//   event.preventDefault();
-//   console.info('You clicked a breadcrumb.');
-// }
-
-// export default function CheckOutSteps({step1,step2,step3}) {
-//   return (
-//     <div role="presentation" onClick={handleClick}>
-//       <Breadcrumbs aria-label="breadcrumb">
-    
-
-//     <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-//       MUI
-//     </Link>
-
-//         <Link
-//           to="/login"
-//           underline="hover"
-//           color="inherit"
-//           href="/material-ui/getting-started/installation/"
-//         >
-//           Core
-//         </Link>
-//         <Typography sx={{ color: 'text.primary' }}>Breadcrumbs</Typography>
-//       </Breadcrumbs>
-//     </div>
-//   );
-// }
 
 
 

@@ -180,7 +180,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder, verifyPayment, resetPayment } from '../redux/slices/paymentSlice'
-import CheckOutSteps from '../components/CheckOutSteps'
+import CheckOutSteps from '../components/checkOutSteps'
 import { useNavigate } from 'react-router-dom'
 import { createMainOrder } from '../redux/slices/orderSlice'
 import Message from '../components/Message'
