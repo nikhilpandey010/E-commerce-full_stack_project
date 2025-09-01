@@ -93,9 +93,9 @@ const HomeScreen = () => {
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-12">
+          
             <Loader />
-          </div>
+          
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
