@@ -1,68 +1,11 @@
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
 
-// import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-
-
-// const LoginScreen=({location,history})=>{
-//     const [email,setEmail] = useState("")
-//     const [password,setPassword] = useState("");
-
-//     const dispatch= useDispatch();
-//     const redirect = location.search ? location.search.split("")[1] : "/";
-
-//     const userLogin = useSelector((state) => state.user);
-//     const {userDetails , loading , error} = userLogin;
-    
-//     useEffect(()=>{
-//         if(userDetails)
-//         {
-//             history.replaceState(redirect);
-//         }
-       
-//     },[history,userDetails,redirect]);
-
-//     const submitHandler =(e) =>{
-//         e.preventDefault();
-//         console.log(email, password);
-//         dispatch(login(email,password));
-//     };
-    
-//     return(
-//         <>
-//     <Form>
-       
-//       <Form.Group className="mb-3" controlId="formBasicPassword">
-//         <Form.Label>Email</Form.Label>
-//         <Form.Control type="email" onChange={(e)=>{setEmail(e.target.value)}} />
-//       </Form.Group>
-//       <Form.Group className="mb-3" controlId="formBasicPassword">
-//         <Form.Label>Password</Form.Label>
-//         <Form.Control type="password" placeholder="Password" onChange={(e)=>{setPassword(e.target.value)}} />
-//       </Form.Group>
-
-//        <Button variant="primary" type="submit" onSubmit={submitHandler}>
-//         Submit
-//       </Button>
-//     </Form>
-
-//     <p>Already have an account ? <a href={Navigate("/register")}>sign in</a></p>
-    
-        
-//         </>
-//     )
-    
-// }
-
-// export default LoginScreen;
 
 import React, { useState } from 'react';
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/slices/userSlice';
 import Message from '../components/Message';
-import Loader from '../components/Loader';
+import Loader from "../components/Loader"
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
