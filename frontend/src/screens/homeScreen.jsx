@@ -10,6 +10,10 @@ import Message from "../components/Message";
 import Paginate from "../components/paginate";
 import { BsArrowRight } from "react-icons/bs";
 
+
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+console.log("API Base URL:", API_BASE_URL); // Debug: Check if the env variable is loaded
+
 const HomeScreen = () => {
   const location = useLocation();
   const dispatch = useDispatch();

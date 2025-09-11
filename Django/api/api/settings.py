@@ -214,7 +214,7 @@ SECRET_KEY = 'django-insecure-sm#-6hvp+m^ytk_jyq6291q6gkei462s^*w2c&unb^ia+nddl0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ "nikhil-e-com-com.onrender.com"]
 
 
 # Application definition
@@ -338,6 +338,8 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://e-commerce-full-stack-project-eight.vercel.app/"
+   
 ]
 
 CORS_ALLOW_METHODS = (

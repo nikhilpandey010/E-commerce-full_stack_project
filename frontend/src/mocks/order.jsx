@@ -1,4 +1,6 @@
 import axios from "axios";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 class OrderAPI{
     createOrder = async (order)=>{
@@ -13,7 +15,9 @@ class OrderAPI{
                 }
             };
 
-            const {data} = await axios.post('http://127.0.0.1:8000/app1/orders/add/',order,config);
+            // const {data} = await axios.post('http://127.0.0.1:8000/app1/orders/add/',order,config);
+            const {data} = await axios.post(`${API_BASE_URL}/app1/orders/add/`,order,config);
+
             return data;
         } catch (error) {
             throw error.response && error.detail ? error.response.detail
@@ -33,7 +37,7 @@ class OrderAPI{
                 },
             };
 
-            const {data} = await axios.get(`http://127.0.0.1:8000/app1/orders/${id}/`,config);
+            const {data} = await axios.get(`${API_BASE_URL}/app1/orders/${id}/`,config);
             console.log("get order details ",data);
             return data;
         } catch (error) {
@@ -54,7 +58,7 @@ class OrderAPI{
                 },
             };
 
-            const {data} = await axios.put(`http://127.0.0.1:8000/app1/orders/${id}/pay/`,paymentResult,config);
+            const {data} = await axios.put(`${API_BASE_URL}/app1/orders/${id}/pay/`,paymentResult,config);
             return data;
         } catch (error) {
             throw error.response && error.detail ? error.response.detail
@@ -74,7 +78,7 @@ class OrderAPI{
                 },
             };
 
-            const {data} = await axios.get('http://127.0.0.1:8000/app1/orders/myorders/',config);
+            const {data} = await axios.get(`${API_BASE_URL}/app1/orders/myorders/`,config);
             return data;
         } catch (error) {
             throw error.response && error.detail ? error.response.detail
@@ -94,7 +98,7 @@ class OrderAPI{
                 },
             };
 
-            const {data} = await axios.put(`http://127.0.0.1:8000/app1/orders/${order._id}/deliver/`,{},config);
+            const {data} = await axios.put(`${API_BASE_URL}/app1/orders/${order._id}/deliver/`,{},config);
             return data;
         } catch (error) {
             throw error.response && error.detail ? error.response.detail

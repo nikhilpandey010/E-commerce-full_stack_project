@@ -1,11 +1,19 @@
 import axios from "axios";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 class ProductAPI {
 
     async getProductList(keyword ,pageNumber)
     {
-        try {
-            const {data} = await axios.get("http://127.0.0.1:8000/app1/products",{
+        // try {
+        //     const {data} = await axios.get("http://127.0.0.1:8000/app1/products",{
+        //         params:{
+        //             keyword: keyword,
+        //             page: pageNumber
+        //         }
+        //     }) ;
+         try {
+            const {data} = await axios.get(`${API_BASE_URL}/app1/products`,{
                 params:{
                     keyword: keyword,
                     page: pageNumber
@@ -28,7 +36,9 @@ class ProductAPI {
     {
         try {
             console.log("8319",productId)
-            const {data} = await axios.get(`http://127.0.0.1:8000/app1/products/${productId}/`);
+            // const {data} = await axios.get(`http://127.0.0.1:8000/app1/products/${productId}/`);
+            const {data} = await axios.get(`${API_BASE_URL}/app1/products/${productId}/`);
+
             console.log(data)
             return  data;
         } catch (error) {
@@ -58,7 +68,9 @@ class ProductAPI {
                 }
             };
             console.log('Axios config headers:', config.headers)  // 🔍 Debug: header structure
-            const {data} = (await axios.post(`http://127.0.0.1:8000/app1/products/${productId}/reviews/`,review,config)).data;
+            // const {data} = (await axios.post(`http://127.0.0.1:8000/app1/products/${productId}/reviews/`,review,config)).data;
+            const {data} = (await axios.post(`${API_BASE_URL}/app1/products/${productId}/reviews/`,review,config)).data;
+
             console.log(data,".......alphabeta")
             return  data;
         } catch (error) {
@@ -72,7 +84,9 @@ class ProductAPI {
     {
         try {
             
-            const {data} = await axios.get("http://127.0.0.1:8000/app1/products/top/");
+            // const {data} = await axios.get("http://127.0.0.1:8000/app1/products/top/");
+            const {data} = await axios.get(`${API_BASE_URL}/app1/products/top/`);
+
             return  data;
         } catch (error) {
             throw error.response && error.response.data.detail

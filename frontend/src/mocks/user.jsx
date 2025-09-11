@@ -1,4 +1,5 @@
 import axios from  "axios";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 class UserAPI{
     async getUserDetails()
@@ -66,7 +67,7 @@ class UserAPI{
     async login(email, password)
     {
         try {
-           const {data} = await axios.post('http://127.0.0.1:8000/app1/users/login/' ,{username:email ,password:password}) ;
+           const {data} = await axios.post(`${API_BASE_URL}/app1/users/login/` ,{username:email ,password:password}) ;
            return data;
         } catch (error) {
             throw error.response && error.response.data.details ? error.response.data.details 
@@ -77,7 +78,7 @@ class UserAPI{
     async  Register(userdetails)
     {
         try{
-        const {data} = await axios.post('http://127.0.0.1:8000/app1/users/register',userdetails);
+        const {data} = await axios.post(`${API_BASE_URL}/app1/users/register`,userdetails);
             return data;
         } catch (error){
               throw error.response && error.response.data.details ? error.response.data.details 
@@ -89,7 +90,7 @@ class UserAPI{
     {
         try{
             console.log(refresh,"refreshToken");
-        const {data} = await axios.post('http://127.0.0.1:8000/app1/users/refresh/', {refresh: refresh});
+        const {data} = await axios.post(`${API_BASE_URL}/app1/users/refresh/`, {refresh: refresh});
             console.log(data,"access");
             return  data.access;
         } catch (error){
