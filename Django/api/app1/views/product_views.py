@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from  rest_framework.response import Response
 from rest_framework.serializers import Serializer
+from django.db.models import Q
 
 
 # local imports 
@@ -18,14 +19,14 @@ from app1.serializers import ProductSerialisers, ReviewSerializer
 def getProducts(request):
     print("hello")
     query = request.query_params.get('keyword', '')
-    # query = request.query_params.get('keyword')
-    # print("query",query)
-    # if query == None:
-    #     query = ''
+    category = request.query_params.get('category','')
 
-    products = Product.objects.filter(name__icontains= query).order_by('-_id')
-    # print("hellllllllllllllllllllllllllllllllllllllll")
-    # print(products)
+    if category:
+        products = Product.objects.filter(Q(category= category) | Q(name__icontains=category)).order_by('-_id')
+    
+    else:
+        products = Product.objects.filter(Q(name__icontains= query) | Q(category__icontains=query)).order_by('-_id')
+  
     page = request.query_params.get('page', 1)
 
     # page = request.query_params.get('page')
@@ -36,7 +37,7 @@ def getProducts(request):
         page =  int(page)
     except:
         page = 1
-    paginator = Paginator(products, 8)
+    paginator = Paginator(products, 12)
 
     try:
         products = paginator.page(page)

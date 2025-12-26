@@ -1,87 +1,42 @@
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-
-// const Product=({product})=>{
-//     return(
-//         <>
-//         <img src={product.image} alt="" />
-//         <h1>{product.name}</h1>
-//         <h1>Rating</h1>
-//         {product.rating}
-
-//         {/* <Rating  
-//         value={product.rating}
-//         color='#f&e824'
-//         >
-
-//         </Rating> */}
-//         </>
-//     )
-// }
-
-
-
-// const Product = ({ product }) => {
-//   console.log("Product component rendered with product:", product);
-  
-//   return (
-//     <>
-    
-//     <Card style={{ width: '18rem' }}>
-//     <Card.Img variant="top" src={product.image} /> 
-//       <Card.Body>
-//         <Card.Title>{product.name}</Card.Title>
-//         <Card.Text>
-//           Rating: {product.rating} from {product.reviews.length} reviews
-//           Price: <h1>${product.price}</h1>
-//         </Card.Text>
-//         {/* <Button variant="primary">Go somewhere</Button> */}
-//       </Card.Body>
-//     </Card>
-    
-//     </>
-//   );
-// };
-
-// export  default Product;
-
-// src/components/product.js
-
 import React from 'react';
-// import Rating from './Rating'; // Assuming you have a Rating component
 
 const Product = ({ product }) => {
+  const formattedPrice = product.price 
+    ? Number(product.price).toLocaleString(undefined, { minimumFractionDigits: 2 }) 
+    : '0.00';
+
   return (
-    // The parent div with shadow and border is in HomeScreen.
-    // This component just provides the content.
-    <>
+    <div className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
       {/* Product Image */}
-      <div className="relative w-full aspect-square">
+      <div className="relative aspect-[4/5] overflow-hidden bg-gray-50">
         <img
           src={product.image}
           alt={product.name}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
         />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
       </div>
 
       {/* Product Details */}
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800 truncate" title={product.name}>
+      <div className="p-5">
+        {/* Added no-underline and forced normal style */}
+        <h3 className="text-sm font-bold text-gray-800 line-clamp-2 min-h-[40px] no-underline list-none decoration-none group-hover:text-blue-600 transition-colors duration-300">
           {product.name}
         </h3>
 
-         {/* <div className="my-2">
+        <div className="mt-4 flex items-center justify-between">
+          {/* Added no-underline and forced text decoration to none */}
+          <p className="text-xl font-black text-gray-900 no-underline decoration-transparent inline-block">
+            ₹{formattedPrice}
+          </p>
           
-          <Rating value={product.rating} text={`${product.numReviews} reviews`} />
-        </div>  */}
-
-        {/* Use a simple p or div tag for price, not a heading tag */}
-        <p className="text-2xl font-bold text-gray-900">
-          ${product.price}
-        </p>
+          <div className="h-9 w-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+            <span className="text-xl font-light">+</span>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

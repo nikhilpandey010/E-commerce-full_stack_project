@@ -7,7 +7,7 @@ import { login } from '../redux/slices/userSlice';
 import Message from '../components/Message';
 import Loader from "../components/Loader"
 
-const LoginScreen = () => {
+const LoginScreen = ({onNext}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,9 +21,17 @@ const LoginScreen = () => {
   const { userDetails, loading, error } = userLogin;
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    if(onNext)
+    {
+      dispatch(login(email, password));
+      onNext();
+    }
+    else{
+  e.preventDefault();
     dispatch(login(email, password));
     navigate("/home");
+    }
+   
   };
 
   return (

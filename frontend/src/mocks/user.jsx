@@ -25,45 +25,6 @@ class UserAPI{
         
     }
 
-    // async updateUser(userId,updateData)
-    // {
-    //     try {
-    //         const token = Json.parse(localStorage.getItem("userInfo")).token;
-    //         const config ={
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`,
-    //             }
-    //         };
-
-    //         const {data}= await axios.put(`/app1/users/profile/update` ,updateData,config);
-    //         return data;
-            
-    //     } catch (error) {
-    //         throw error.response && error.response.data.details ? error.response.data.details 
-    //         : error.message;
-    //     }
-    // }
-
-    // async deleteUser(userId)
-    // {
-    //     try {
-    //         const token = Json.parse(localStorage.getItem("userInfo")).token;
-    //         const config ={
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`,
-    //             }
-    //         };
-
-    //         await axios.delete(`/app1/users/delete/${userId}`,config)
-    //     }
-    //     catch(error)
-    //     {
-    //         throw error.response && error.response.data.details ? error.response.data.details 
-    //         : error.message;
-    //     }
-
-    // }
-
     async login(email, password)
     {
         try {

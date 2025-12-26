@@ -223,11 +223,7 @@ const ProfileScreen = () => {
                     <div className="md:col-span-1 bg-white rounded-lg shadow-md p-6">
                         <div className="flex flex-col items-center mb-6">
                             <div className="relative mb-4">
-                                {/* <img
-                                    // src={profileImage}
-                                    alt="Profile"
-                                    className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
-                                /> */}
+                              
                                 {isEditing && (
                                     <div className="absolute bottom-0 right-0">
                                         <label className="bg-blue-600 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700">

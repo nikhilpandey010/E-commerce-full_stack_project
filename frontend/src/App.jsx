@@ -11,6 +11,8 @@ import PaymentScreen from "./screens/paymentScreen";
 import OrderScreen from "./screens/orderScreen";
 import CartScreen from "./screens/cartScreen"
 import PlaceOrderScreen from "./screens/placeOrderScreen";
+import CategoryScreen from "./screens/categoryScreen";
+import CheckoutScreen from "./screens/CheckoutScreen";
 
 
 function App() {
@@ -30,12 +32,15 @@ function App() {
       <Route path="/orderDetails/:id?" element={<OrderScreen/>} />    
   
       <Route path="/profile" element={<ProfileScreen/>} />
-     <Route path="/payment" element={<PaymentScreen/>} />
-     <Route path="/placeOrder" element={<PlaceOrderScreen/>} />
-     <Route path="/shipping" element={<ShippingScreen/>} />
+      <Route path="/payment" element={<PaymentScreen/>} />
+      <Route path="/placeOrder" element={<PlaceOrderScreen/>} />
+      <Route path="/shipping" element={<ShippingScreen/>} />
       <Route path="/cart/:id?" element={<CartScreen/>} />   
- 
-      
+      <Route path="/ProductByCategory/:category?" element={<CategoryScreen/>} />
+      <Route path="/checkOutPage" element={<CheckoutScreen/>}/>
+      {/* <Route path="/:category&categoryPage" element={<CategoryScreen/>} /> */}
+  
+
       </Route>
       <Route path="/login" element={<LoginScreen/>} />
       <Route path="/register" element={<RegisterScreen/>} />
@@ -48,4 +53,4 @@ function App() {
   )
 }
 
-export default App;
+export default App;     

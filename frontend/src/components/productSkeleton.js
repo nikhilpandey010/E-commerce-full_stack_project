@@ -1,4 +1,4 @@
-// src/components/ProductSkeleton.js
+
 
 import React from 'react';
 

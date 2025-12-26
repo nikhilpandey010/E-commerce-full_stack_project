@@ -1,57 +1,19 @@
 
-
-
-
 import React from 'react';
-import Typography from '@mui/material/Typography';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
-import { Link as RouterLink } from 'react-router-dom';  // for navigation
-import { useSelector } from 'react-redux';
+import { Stepper, Step, StepLabel, Box } from '@mui/material';
 
+const steps = ['Sign In', 'Shipping', 'Order Summary', 'Payment'];
 
-
-export default function CheckOutSteps({ step1, step2, step3 ,step4}) {
-const userLogin = useSelector((state) => state.user);
-const { userDetails } = userLogin;
+export default function CheckOutSteps({ activeStep }) {
   return (
-    <div role="presentation">
-      <Breadcrumbs aria-label="breadcrumb">
-
-        {step1  ? (
-          <Link component={RouterLink} to="/login" underline="hover" color="inherit">
-            Shipping
-          </Link>
-        ) : (
-          <Typography color="text.disabled">Sign In</Typography>
-        )}
-
-        {step2 ? (
-          <Link component={RouterLink} to="/shipping" underline="hover" color="inherit">
-            Shipping
-          </Link>
-        ) : (
-          <Typography color="text.disabled">Shipping</Typography>
-        )}
-
-        {step3 ? (
-          <Link component={RouterLink} to="/placeorder" underline="hover" color="inherit">
-            Place Order
-          </Link>
-        ) : (
-          <Typography color="text.disabled">Place Order</Typography>
-        )}
-
-        {step4 ? (
-          <Link component={RouterLink} to="/payment" underline="hover" color="inherit">
-            Payment
-          </Link>
-        ) : (
-          <Typography color="text.disabled">Payment</Typography>
-        )}
-
-      </Breadcrumbs>
-    </div>
+    <Box sx={{ width: '100%', mb: 4 }}>
+      <Stepper activeStep={activeStep} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+    </Box>
   );
 }
-

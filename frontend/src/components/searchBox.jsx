@@ -1,45 +1,6 @@
-// import { useState } from "react"
-// import { useNavigate } from "react-router-dom";
-
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
-
-// const Search=()=>{
-//     const [keyword,setKeyword]= useState("");
-//     const navigate= useNavigate();
-
-// const submitHandler=(e)=>{
-//     e.preventDefault();
-//     console.log(keyword);
-
-//     navigate(`/?keyword=${keyword}&page=1`);
-// }
-
-//     return(
-//         <>
-//          <Form className="d-flex">
-//             <Form.Control
-//               type="search"
-//               placeholder="Search"
-//               className="me-2"
-//               aria-label="Search"
-//               onChange={(e)=>{setKeyword(e.target.value)}}
-              
-//             />
-//             <Button variant="outline-success" type="submit" onClick={submitHandler}>Search</Button>
-//           </Form>
-        
- 
-//         </>
-//     )
-// }
-
-// export default Search;
-
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
 
 const Search = () => {
@@ -48,44 +9,46 @@ const Search = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(keyword);
-        navigate(`/?keyword=${keyword}&page=1`);
-    }
+        if (keyword.trim()) {
+            navigate(`/?keyword=${keyword.trim()}&page=1`);
+        }
+    };
 
     return (
-        <div className="position-relative" style={{ width: '700px' }}>
-            <Form className="d-flex" onSubmit={submitHandler}>
-                <div className="position-relative flex-grow-1">
-                    <FiSearch className="position-absolute top-50 start-3 translate-middle-y text-gray-400" />
-                    <Form.Control
-                        type="search"
-                        placeholder="Search products, brands, categories..."
-                        className="ps-5 py-2 border-end-0"
-                        aria-label="Search"
-                        value={keyword}
-                        onChange={(e) => setKeyword(e.target.value)}
-                        style={{
-                            borderRadius: '24px 0 0 24px',
-                            fontSize: '1rem',
-                            height: '44px'
-                        }}
-                    />
-                </div>
-                <Button 
-                    variant="primary" 
-                    type="submit"
-                    className="px-4"
-                    style={{
-                        borderRadius: '0 24px 24px 0',
-                        height: '44px'
-                    }}
-                >
-                    Search
-                </Button>
-            </Form>
-        </div>
-    )
-}
+        <form 
+            onSubmit={submitHandler} 
+            className="relative w-full max-w-[550px] group flex items-center"
+        >
+            {/* Search Icon */}
+            <div className="absolute left-4 pointer-events-none transition-colors">
+                <FiSearch 
+                    className="text-gray-400 group-focus-within:text-red-500" 
+                    size={18} 
+                />
+            </div>
+
+            {/* Input Field */}
+            <input
+                type="text"
+                placeholder="Search products, brands and more..."
+                className="w-full pl-12 pr-28 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-sm transition-all 
+                           focus:outline-none focus:bg-white focus:border-red-500 focus:ring-4 focus:ring-red-500/10 
+                           placeholder:text-gray-400 text-gray-700 shadow-sm"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+            />
+
+            {/* Perfected Search Button */}
+            <button
+                type="submit"
+                className="absolute right-1.5 h-[36px] px-5 bg-gray-900 hover:bg-red-600 text-white text-[11px] 
+                           font-bold uppercase tracking-wider rounded-full transition-all active:scale-95 
+                           flex items-center justify-center shadow-md"
+            >
+                Search
+            </button>
+        </form>
+    );
+};
 
 export default Search;
-

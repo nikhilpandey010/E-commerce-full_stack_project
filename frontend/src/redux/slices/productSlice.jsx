@@ -19,7 +19,7 @@ const initialState={
     productDetails:{product:{reviews:[]},loading:false,error:null},
     createReview:{loading:false,error:null,success:false},
     topRatedProducts:{products:[],loading:false,error:null},
-    
+    buyNowProduct:{product:{},loading:false,error:null},
 }
 
 const ProductSlice = createSlice(
@@ -117,6 +117,22 @@ const ProductSlice = createSlice(
 
 
             },
+            buyNowProductRequest(state)
+            {
+                state.buyNowProduct.loading=true;
+                state.buyNowProduct.error=null;
+            },
+            buyNowProductSuccess(state,action)
+            {
+                state.buyNowProduct.loading=false;
+                state.buyNowProduct.product=action.payload;
+            },
+            buyNowProductEmpty(state,action)
+            {
+                state.buyNowProduct.loading=false;
+                state.buyNowProduct.product={};
+                
+            }
 
 
 
@@ -146,7 +162,7 @@ export const{
     productListRequest,productListSuccess,productListFailure,
     productDetailsFailure,productDetailsRequest,productDetailsSuccess,
     createReviewFailure,createReviewRequest,createtReviewSuccess,
-    productTopRequest,productTopSucess,productTopFailure
+    productTopRequest,productTopSucess,productTopFailure,buyNowProductEmpty,buyNowProductRequest,buyNowProductSuccess
 } =ProductSlice.actions;
 
 export const fetchProductList = (keyword,pageNumber)=>async(dispatch)=>{
@@ -163,6 +179,19 @@ export const fetchProductList = (keyword,pageNumber)=>async(dispatch)=>{
         
     }
 }
+export const fetchProductByCategory = (category,pageNumber)=>async(dispatch)=>{
+    
+    try {
+        dispatch(productListRequest());
+        const productList= await productAPI.getProductListByCategory(category,pageNumber);
+        console.log(productList)
+        dispatch(productListSuccess(productList));
+    } catch (error) {
+        dispatch(productListFailure(error.response?.data.detail || error.message));
+        
+    }
+}
+
 
 
 
@@ -202,6 +231,19 @@ export const fetchTopRatedProducts = ()=>async(dispatch)=>{
         
     }
 }
+
+
+export const buyNowProduct = (product)=>async(dispatch)=>{
+    
+        console.log("buyNowProduct called with product:", product);
+        dispatch(buyNowProductRequest());
+        
+        dispatch(buyNowProductSuccess(product));
+    
+        
+        
+    }
+
 
 
 export default ProductSlice.reducer;

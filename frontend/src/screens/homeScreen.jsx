@@ -9,10 +9,11 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Paginate from "../components/paginate";
 import { BsArrowRight } from "react-icons/bs";
+import CategorySection from "../components/CategorySection";
 
 
 const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
-console.log("API Base URL:", API_BASE_URL); // Debug: Check if the env variable is loaded
+console.log("API Base URL:", API_BASE_URL); 
 
 const HomeScreen = () => {
   const location = useLocation();
@@ -27,14 +28,6 @@ const HomeScreen = () => {
   useEffect(() => {
     dispatch(fetchProductList(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
-
-  // Sample categories data
-  const categories = [
-    { name: 'Electronics', icon: '💻', slug: 'electronics' },
-    { name: 'Clothing', icon: '👕', slug: 'clothing' },
-    { name: 'Home', icon: '🏠', slug: 'home' },
-    { name: 'Books', icon: '📚', slug: 'books' },
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -56,28 +49,12 @@ const HomeScreen = () => {
         </div>
       )}
 
-      {/* Product Carousel */}
+      
       {!keyword && <ProductCarousel />}
 
-      {/* Categories Section */}
+    
       {!keyword && (
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Shop by Category</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {categories.map((category) => (
-              <Link
-                to={`/products?category=${category.slug}`}
-                key={category.slug}
-                className="group relative block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 p-6 text-center"
-              >
-                <span className="text-4xl mb-4 inline-block group-hover:scale-110 transition-transform duration-300">
-                  {category.icon}
-                </span>
-                <h3 className="text-lg font-semibold text-gray-800">{category.name}</h3>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <CategorySection/>
       )}
 
       {/* Products Section */}
@@ -103,23 +80,26 @@ const HomeScreen = () => {
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
+          
           <>
-            {Array.isArray(products) && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {products.map((product) => (
-                  <div
-                    key={product._id}
-                    className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300"
-                  >
-                    <Link to={`/product/${product._id}`}>
-                      <Product product={product} />
-                    </Link>
-                  </div>
-                ))}
+            {/* The Grid Container */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10">
+            {Array.isArray(products) && products.map((product) => (
+              <div key={product._id}>
+              <Link 
+                to={`/product/${product._id}`} 
+                className="no-underline hover:no-underline focus:no-underline block"
+                style={{ textDecoration: 'none' }} // Inline style for absolute override
+              >
+                <Product product={product} />
+              </Link>
               </div>
-            )}
-            <div className="mt-8">
-              <Paginate page={page} pages={pages} keyword={keyword} />
+            ))}
+          </div>
+
+            {/* Pagination */}
+            <div className="mt-16 flex justify-center">
+              <Paginate page={page} pages={pages}  />
             </div>
           </>
         )}

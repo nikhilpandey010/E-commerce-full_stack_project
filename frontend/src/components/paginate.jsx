@@ -6,11 +6,11 @@ const Paginate = ({ page, pages, keyword = '' }) => {
   const navigate = useNavigate();
 
   const handleChange = (event, value) => {
-    // if (keyword) {
-    //   navigate(`page/page=${value}`);
-    // } else {
+    if (keyword) {
+      navigate(`/productByCategory/?category=${keyword}&categoryPage=${value}`);
+    } else {
       navigate(`/?page=${value}`);
-    // }
+    }
   };
 
   return (

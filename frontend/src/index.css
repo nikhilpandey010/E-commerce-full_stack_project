@@ -1,12 +1,14 @@
 @import "tailwindcss";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 
 /* Prevent layout shifts */
-body {
-  overflow-x: hidden;
-}
+/* body {
+  /* overflow-x: hidden; 
+} */
 
 /* Ensure consistent sizing for product cards */
 .product-card {
@@ -36,3 +38,17 @@ body {
 .fade-in {
   animation: fadeIn 0.5s ease-in;
 }
+
+
+
+.navbar-collapse {
+  overflow: visible !important;
+  z-index: 9999;
+}
+
+.navbar {
+  overflow: visible !important;
+}
+
+
+

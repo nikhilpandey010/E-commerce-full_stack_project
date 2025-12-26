@@ -5,13 +5,6 @@ class ProductAPI {
 
     async getProductList(keyword ,pageNumber)
     {
-        // try {
-        //     const {data} = await axios.get("http://127.0.0.1:8000/app1/products",{
-        //         params:{
-        //             keyword: keyword,
-        //             page: pageNumber
-        //         }
-        //     }) ;
          try {
             const {data} = await axios.get(`${API_BASE_URL}/app1/products`,{
                 params:{
@@ -20,6 +13,26 @@ class ProductAPI {
                 }
             }) ;
 
+            return data;
+
+            
+        } catch (error) {
+            throw error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message
+            
+        }
+    }
+
+    async getProductListByCategory(category,pageNumber)
+    {
+         try {
+            const {data} = await axios.get(`${API_BASE_URL}/app1/products`,{
+                params:{
+                    category: category,
+                    page: pageNumber
+                }
+            }) ;
 
             return data;
 
@@ -36,7 +49,7 @@ class ProductAPI {
     {
         try {
             console.log("8319",productId)
-            // const {data} = await axios.get(`http://127.0.0.1:8000/app1/products/${productId}/`);
+        
             const {data} = await axios.get(`${API_BASE_URL}/app1/products/${productId}/`);
 
             console.log(data)
@@ -54,10 +67,7 @@ class ProductAPI {
     async createProductReview(productId,review)
     {
         try {
-            // const rawToken = JSON.parse(localStorage.getItem("userInfo"))?.token || ""
-            // const token = rawToken.replace(/\r?\n|\r/g, "").trim()
-            // console.log("Clean token:", token)
-            // if (!token) throw new Error("You must be logged in to post a review.")
+           
             const token = JSON.parse(localStorage.getItem("userInfo")).token;
             console.log('Token:', token)  // 🔍 Debug: token value
             
