@@ -157,7 +157,6 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
     "https://e-commerce-full-stack-project-eight.vercel.app",
    
 ]
