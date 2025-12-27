@@ -158,10 +158,13 @@ REST_FRAMEWORK = {
     # ]
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "https://e-commerce-full-stack-project-eight.vercel.app/"
+# CORS_ALLOWED_ORIGINS = [
+#     "https://e-commerce-full-stack-project-eight.vercel.app"
    
-]
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 CORS_ALLOW_METHODS = (
     "DELETE",
