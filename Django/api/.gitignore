@@ -8,8 +8,7 @@ __pycache__/
 db.sqlite3
 *.db
 *.sqlite-journal
-media/
-/images
+
 
 # Environment and secrets
 env/
